@@ -4,6 +4,7 @@ import CipherType from "./model/CipherType";
 export default class ShiftCipher implements CipherDecipher{
 
     constructor(private _mapKey:Map<number, number> = new Map(), private _lastUpdate: number = new Date().getMilliseconds()){
+        this._mapKey.set(this._lastUpdate, this.getRandomNumber(keyConfig.min, keyConfig.max));
         setInterval(this.updateKey, keyConfig.interval);
     }
 
